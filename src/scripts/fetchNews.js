@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-let apiKey = "f8d7869212c24907bc585db6b6d267be";
+let apiKey = "";
 
 // this is how we will export a file
 // you also have to import it in index.js
