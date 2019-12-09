@@ -1,0 +1,47 @@
+$main-bg: #3f3f3f;
+$header-bg: #464453;
+$header-height: 60px;
+
+body,
+body * {
+  box-sizing: border-box;
+  font-family: monospace;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+#container {
+  width: 100%;
+  height: 100%;
+  background: $main-bg;
+  .header {
+    height: $header-height;
+    background: $header-bg;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    #news-search {
+      border: 0px;
+      font-size: 20px;
+      border-radius: 50px;
+      padding: 10px 20px;
+      width: 400px;
+      background: purple;
+      color: yellow;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  .news {
+    height: calc(100% - #{$header-height});
+  }
+}
