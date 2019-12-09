@@ -1,13 +1,19 @@
 $main-bg: #c0c1c7;
 $header-bg: #423b6d;
-$header-height: 60px;
+$headerHeight: 80px;
+$labelDate: rgb(145, 103, 201);
+$labelSource: rgb(49, 170, 55);
 
 body,
 body * {
   box-sizing: border-box;
-  font-family: monospace;
+  font-family: "Work Sans", sans-serif;
 }
-
+a:-webkit-any-link {
+  color: yellow;
+  cursor: pointer;
+  text-decoration: none;
+}
 body,
 html {
   width: 100%;
@@ -18,10 +24,10 @@ html {
 #container {
   width: 100%;
   height: 100%;
-  background: $header-bg;
+  background: $main-bg;
   .header {
-    height: $header-height;
-    background: $main-bg;
+    height: $headerHeight;
+    background: $header-bg;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -42,39 +48,57 @@ html {
     }
   }
   .news {
-    height: calc(100% - #{$header-height});
+    height: calc(100% - #{$headerHeight});
     overflow: scroll;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
     align-content: stretch;
-    align-items: flex-start;
     .article {
       background: $header-bg;
       margin: 10px;
-      border-radius: 20px;
+      border-radius: 10px;
       color: yellow;
-      width: 400px;
       overflow: hidden;
+      flex-basis: 23%;
       .img {
+        position: relative;
         img {
           width: 100%;
-          border-radius: 10px 10px 0 0;
+          height: 220px;
           object-fit: cover;
         }
-      }
-      .info {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-content: flex-start;
-        align-items: flex-start;
-        padding: 0 10px;
-        .source {
-          background: $main-bg;
-          padding: 2px 5px;
-          border-radius: 5px;
+        .info {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          justify-content: space-between;
+          align-content: flex-start;
+          padding: 0 10px;
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          .source {
+            background: $labelSource;
+            padding: 2px 5px;
+            border-radius: 5px;
+          }
+          .date {
+            background: $labelDate;
+            padding: 2px 5px;
+            border-radius: 5px;
+          }
         }
+      }
+
+      .title {
+        font-weight: 600;
+        padding: 0 10px;
+      }
+      .description {
+        padding: 0 10px;
       }
     }
   }
