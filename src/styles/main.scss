@@ -1,5 +1,5 @@
-$main-bg: #3f3f3f;
-$header-bg: #464453;
+$main-bg: #c0c1c7;
+$header-bg: #423b6d;
 $header-height: 60px;
 
 body,
@@ -18,10 +18,10 @@ html {
 #container {
   width: 100%;
   height: 100%;
-  background: $main-bg;
+  background: $header-bg;
   .header {
     height: $header-height;
-    background: $header-bg;
+    background: $main-bg;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -43,5 +43,39 @@ html {
   }
   .news {
     height: calc(100% - #{$header-height});
+    overflow: scroll;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: stretch;
+    align-items: flex-start;
+    .article {
+      background: $header-bg;
+      margin: 10px;
+      border-radius: 20px;
+      color: yellow;
+      width: 400px;
+      overflow: hidden;
+      .img {
+        img {
+          width: 100%;
+          border-radius: 10px 10px 0 0;
+          object-fit: cover;
+        }
+      }
+      .info {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        align-items: flex-start;
+        padding: 0 10px;
+        .source {
+          background: $main-bg;
+          padding: 2px 5px;
+          border-radius: 5px;
+        }
+      }
+    }
   }
 }

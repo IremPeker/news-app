@@ -1,14 +1,14 @@
-const path = require('path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const autoprefixer = require('autoprefixer');
+const path = require("path");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const autoprefixer = require("autoprefixer");
 
 const config = {
-  entry: './src/scripts/index.js',
+  entry: ["babel-polyfill", "./src/scripts/index.js"],
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: path.join('scripts', 'bundle.js')
+    path: path.resolve(__dirname, "dist"),
+    filename: path.join("scripts", "bundle.js")
   },
   module: {
     rules: [
@@ -17,9 +17,9 @@ const config = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env'],
+            presets: ["@babel/preset-env"],
             sourceMaps: true
           }
         }
@@ -29,7 +29,7 @@ const config = {
         test: /\.html$/,
         use: [
           {
-            loader: 'html-loader',
+            loader: "html-loader",
             options: { minimize: true }
           }
         ]
@@ -39,29 +39,29 @@ const config = {
         test: /\.css$|\.scss$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: "style-loader"
           },
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               sourceMap: true
             }
           },
           {
-            loader: 'resolve-url-loader',
+            loader: "resolve-url-loader",
             options: {
               sourceMap: true
             }
           },
           {
-            loader: 'sass-loader',
+            loader: "sass-loader",
             options: {
               sourceMap: true
             }
           },
           {
-            loader: 'postcss-loader',
+            loader: "postcss-loader",
             options: {
               sourceMap: true,
               plugins: () => [autoprefixer()]
@@ -74,11 +74,11 @@ const config = {
         test: /\.(png|jpg|jpeg|gif)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[name].[ext]',
-              outputPath: 'img/',
-              publicPath: '../img/'
+              name: "[name].[ext]",
+              outputPath: "img/",
+              publicPath: "../img/"
             }
           }
         ]
@@ -88,11 +88,11 @@ const config = {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/',
-              publicPath: '../fonts'
+              name: "[name].[ext]",
+              outputPath: "fonts/",
+              publicPath: "../fonts"
             }
           }
         ]
@@ -102,19 +102,19 @@ const config = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebPackPlugin({
-      template: './src/index.html',
-      filename: './index.html'
+      template: "./src/index.html",
+      filename: "./index.html"
     }),
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].css',
-      chunkFilename: 'styles/chunks/[id].css'
+      filename: "styles/[name].css",
+      chunkFilename: "styles/chunks/[id].css"
     })
   ]
 };
 
 module.exports = (env, argv) => {
-  if (argv.mode === 'development') {
-    config.devtool = 'source-map';
+  if (argv.mode === "development") {
+    config.devtool = "source-map";
   }
 
   return config;
