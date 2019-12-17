@@ -3,12 +3,16 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require("autoprefixer");
+const Dotenv = require("dotenv-webpack");
 
 const config = {
   entry: ["babel-polyfill", "./src/scripts/index.js"],
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: path.join("scripts", "bundle.js")
+  },
+  node: {
+    fs: "empty"
   },
   module: {
     rules: [
@@ -108,7 +112,8 @@ const config = {
     new MiniCssExtractPlugin({
       filename: "styles/[name].css",
       chunkFilename: "styles/chunks/[id].css"
-    })
+    }),
+    new Dotenv()
   ]
 };
 
