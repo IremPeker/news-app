@@ -3,6 +3,7 @@ $header-bg: #423b6d;
 $headerHeight: 80px;
 $labelDate: rgb(145, 103, 201);
 $labelSource: rgb(49, 170, 55);
+$textCol: yellow;
 
 body,
 body * {
@@ -10,7 +11,7 @@ body * {
   font-family: "Work Sans", sans-serif;
 }
 a:-webkit-any-link {
-  color: yellow;
+  color: $textCol;
   cursor: pointer;
   text-decoration: none;
 }
@@ -43,11 +44,16 @@ html {
       border-radius: 50px;
       padding: 10px 20px;
       width: 400px;
-      background: purple;
-      color: yellow;
+      background: $main-bg;
+      color: black;
       &:focus {
         outline: none;
       }
+    }
+    .explanation {
+      color: $textCol;
+      font-size: 20px;
+      margin-left: 25px;
     }
     .loading {
       background: url(../images/fox.svg) no-repeat scroll;
@@ -67,7 +73,7 @@ html {
         background: $header-bg;
         margin: 10px;
         border-radius: 10px;
-        color: yellow;
+        color: $textCol;
         overflow: hidden;
         flex-basis: 23%;
         transition: 0.5s;
