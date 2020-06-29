@@ -112,10 +112,20 @@ html {
         }
 
         .title {
-          font-weight: 600;
           padding: 0 10px;
+
+          .section {
+            font-size: small;
+          }
+
+          .headline {
+            font-size: large;
+            font-weight: bold;
+            font-style: italic;
+          }
         }
         .description {
+          font-size: medium;
           padding: 0 10px;
         }
       }
@@ -134,13 +144,21 @@ html {
         button {
           font-size: 15px;
           background: none;
+          background-color: $header-bg;
           padding: 10px 20px;
-          color: white;
+          color: $textCol;
           border-radius: 30px;
           border-style: solid;
           cursor: pointer;
+          &:hover {
+            background-color: #6e679c;
+          }
           &:focus {
             outline: none;
+          }
+          &:active {
+            box-shadow: 0 5px #30295c;
+            transform: translateY(4px);
           }
         }
       }

@@ -6,7 +6,7 @@ const autoprefixer = require("autoprefixer");
 const Dotenv = require("dotenv-webpack");
 
 const config = {
-  entry: ["babel-polyfill", "./src/scripts/index.js"],
+  entry: ["babel-polyfill", "./src/scripts/index.js"], // for async function to work
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: path.join("scripts", "bundle.js")

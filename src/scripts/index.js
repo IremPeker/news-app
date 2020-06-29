@@ -11,8 +11,6 @@ const searchInput = document.querySelector("#news-search");
 searchInput.onkeyup = getValue;
 
 function getValue(e) {
-  //   console.log(e.srcElement.value);  // gives the same value as searchInput.value
-  // below function will wait 500ms to get the e.srcElement.value
   const value = e.srcElement.value;
   if (value) {
     showLoading();
