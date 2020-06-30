@@ -1,34 +1,50 @@
 import "../styles/main.scss";
 import { fetchNews } from "./fetchNews";
-import { appendArticle, appendButton } from "./domMethods";
-import { cleanUp, showLoading, hideLoading } from "./helpers";
-
+import { appendArticle, appendButton, appendNotFound } from "./domMethods";
+import { cleanUp, showLoading, hideLoading, showError, hideError, hideNotFound } from "./helpers";
 require("dotenv").config();
 
-/** Listening on the keyup event */
 let timeout = null;
 const searchInput = document.querySelector("#news-search");
-searchInput.onkeyup = getValue;
+hideError();
+hideLoading();
 
-function getValue(e) {
-  const value = e.srcElement.value;
-  if (value) {
+searchInput.addEventListener('keypress', function () {
+  const value = searchInput.value;
+  
+  if (value.length < 3) {
+    showError();
+    hideLoading();
+  }
+  else if (value.length >= 3) {
+    hideError();
     showLoading();
-  } else hideLoading();
+  }
+  else {
+    hideError();
+    hideLoading();
+  }
+  
   clearTimeout(timeout);
   timeout = setTimeout(function() {
     if (value) {
       renderNews(value);
     } else cleanUp();
   }, 500);
-}
+});
 
 async function renderNews(value) {
   const articles = await fetchNews(value);
   cleanUp();
-  hideLoading();
-  articles.map(el => {
-    appendArticle(el);
-  });
-  appendButton(value); // the value (the keyword we write inside search) will come here
+
+  if(articles.length > 0) {
+    hideNotFound();
+    articles.map(el => {
+      appendArticle(el);
+    });
+    appendButton(value); 
+  }
+  else {
+    return appendNotFound();
+  }
 }

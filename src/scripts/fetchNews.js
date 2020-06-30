@@ -1,5 +1,6 @@
 import axios from "axios";
 import { appendArticle } from "./domMethods";
+import { showLoading } from "./helpers";
 
 let apiKey = process.env.API_KEY;
 
@@ -24,6 +25,7 @@ export async function fetchMoreNews(term) {
 
   const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${term}&api-key=${apiKey}&pageSize=${params.pageSize}&page=${params.page}`;
   const res = await axios.get(url);
+  showLoading();
   const articles = res.data.response.docs;
   articles.map(el => {
     appendArticle(el);
