@@ -11,11 +11,29 @@ export function cleanUp() {
 }
 
 export function showLoading() {
-  const news = document.querySelector("#news-search");
-  news.classList.add("loading");
+  const loading = document.querySelector('.loading');
+  loading.style.visibility = 'visible';
+  setTimeout(function(){
+    loading.style.visibility = 'hidden';
+ }, 4000);
 }
 
 export function hideLoading() {
-  const news = document.querySelector("#news-search");
-  news.classList.remove("loading");
+  const loading = document.querySelector('.loading');
+  loading.style.visibility = 'hidden';
+}
+
+export function showError() {
+  const error = document.querySelector('.error-message');
+  error.style.display = 'block';
+}
+
+export function hideError() {
+  const error = document.querySelector('.error-message');
+  error.style.display = 'none';
+}
+
+export function hideNotFound() {
+  const notFoundMessage = document.querySelector('.not-found');
+  notFoundMessage.style.display = 'none';
 }
