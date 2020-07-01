@@ -12,11 +12,11 @@ hideLoading();
 searchInput.addEventListener('keypress', function () {
   const value = searchInput.value;
   
-  if (value.length < 3) {
+  if (value.length < 2) {
     showError();
     hideLoading();
   }
-  else if (value.length >= 3) {
+  else if (value.length >= 2) {
     hideError();
     showLoading();
   }
