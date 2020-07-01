@@ -22,17 +22,17 @@ html {
   #container .hidden {
     right: -100% !important; }
   #container .header {
-    height: 80px;
+    height: 120px;
     background: #423b6d;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
     flex-direction: row;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
     -webkit-box-pack: start;
     -ms-flex-pack: start;
     justify-content: flex-start;
@@ -40,6 +40,11 @@ html {
     -ms-flex-align: center;
     align-items: center;
     padding: 10px; }
+    @media (min-width: 768px) {
+      #container .header {
+        height: 80px;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap; } }
     #container .header .input-wrapper {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -50,14 +55,16 @@ html {
       flex-direction: column; }
       #container .header .input-wrapper #news-search {
         border: 0px;
-        font-size: 20px;
         border-radius: 50px;
         padding: 10px 20px;
-        width: 400px;
+        width: 210px;
         background: #c0c1c7;
         color: black; }
         #container .header .input-wrapper #news-search:focus {
           outline: none; }
+        @media (min-width: 768px) {
+          #container .header .input-wrapper #news-search {
+            width: 400px; } }
       #container .header .input-wrapper .error-message {
         color: yellow;
         margin-top: 5px; }
@@ -70,19 +77,33 @@ html {
         height: 24px;
         background-image: url("http://loadinggif.com/images/image-selection/3.gif");
         background-size: 25px 25px;
-        background-position: right center;
+        background-position: center;
         background-repeat: no-repeat; }
     #container .header .explanation {
       color: yellow;
-      font-size: 20px;
-      margin-left: 25px; }
+      font-size: 10px;
+      -webkit-box-ordinal-group: 0;
+      -ms-flex-order: -1;
+      order: -1; }
+      @media (min-width: 768px) {
+        #container .header .explanation {
+          font-size: 15px;
+          -webkit-box-ordinal-group: 1;
+          -ms-flex-order: 0;
+          order: 0; } }
   #container .news-container {
     height: calc(100% - 80px);
     overflow: scroll; }
     #container .news-container .news {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(1, 1fr);
       grid-gap: 10px; }
+      @media (min-width: 768px) {
+        #container .news-container .news {
+          grid-template-columns: repeat(3, 1fr); } }
+      @media (min-width: 1024px) {
+        #container .news-container .news {
+          grid-template-columns: repeat(4, 1fr); } }
       #container .news-container .news .article {
         background: #423b6d;
         margin: 10px;
@@ -94,9 +115,13 @@ html {
         -webkit-transition: 0.5s;
         transition: 0.5s; }
         #container .news-container .news .article:hover {
-          -webkit-transform: translate(0, -4px);
-          transform: translate(0, -4px);
-          z-index: 1000; }
+          -webkit-transform: scale(1);
+          transform: scale(1); }
+        @media (min-width: 768px) {
+          #container .news-container .news .article {
+            -webkit-transform: translate(0, -4px);
+            transform: translate(0, -4px);
+            z-index: 1000; } }
         #container .news-container .news .article .img {
           position: relative; }
           #container .news-container .news .article .img img {
@@ -147,7 +172,7 @@ html {
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-line-clamp: 8;
-            /* number of lines to show */
+            /* number of lines to show in case the abstract is long */
             -webkit-box-orient: vertical; }
     #container .news-container .pagination {
       background: #c0c1c7; }
@@ -189,15 +214,4 @@ html {
       color: #423b6d;
       font-size: 17px;
       margin-left: 29px; }
-
-@media only screen and (max-width: 1200px) {
-  #container .news-container .news {
-    grid-template-columns: repeat(3, 1fr); } }
-
-@media only screen and (max-width: 700px) {
-  #container .news-container .news {
-    grid-template-columns: repeat(1, 1fr); }
-    #container .news-container .news .article:hover {
-      -webkit-transform: scale(1);
-      transform: scale(1); } }
 
